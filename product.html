@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Product Details - Fashion Shop</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer"
+    >
+
+    <style>
+
+        /* ==========================================
+           PRODUCT
+        ========================================== */
+
+        .product-container {
+            max-width: 1000px;
+
+            margin: 40px auto;
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            background-color:
+                var(--bg-primary);
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 8px 20px
+                rgba(0, 0, 0, 0.1);
+
+            overflow: hidden;
+        }
+
+
+        .product-image {
+            flex: 1 1 400px;
+
+            min-width: 300px;
+
+            min-height: 450px;
+
+            background: #f5f5f5;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 30px;
+        }
+
+
+        .product-image img {
+            max-width: 100%;
+
+            width: 400px;
+
+            height: 400px;
+
+            object-fit: contain;
+
+            border-radius: 12px;
+
+            transition:
+                transform 0.3s ease;
+        }
+
+
+        .product-image img:hover {
+            transform: scale(1.05);
+        }
+
+
+        .product-details {
+            flex: 1 1 400px;
+
+            padding: 40px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+
+        .product-details h1 {
+            font-size: 2rem;
+
+            margin-bottom: 15px;
+        }
+
+
+        .product-details .price {
+            color: tomato;
+
+            font-size: 1.5rem;
+
+            font-weight: bold;
+
+            margin-bottom: 15px;
+        }
+
+
+        .product-details .category {
+            color: #777;
+
+            text-transform: capitalize;
+
+            margin-bottom: 15px;
+        }
+
+
+        .product-details .description {
+            font-size: 1rem;
+
+            margin-bottom: 25px;
+
+            line-height: 1.6;
+
+            color: #555;
+        }
+
+
+        .product-details .btn {
+            padding: 12px 25px;
+
+            background: var(--primary);
+
+            color: #fff;
+
+            font-size: 1rem;
+
+            border: none;
+
+            border-radius: 8px;
+
+            cursor: pointer;
+
+            transition:
+                background 0.3s ease;
+
+            width: fit-content;
+        }
+
+
+        .product-details .btn:hover {
+            background: tomato;
+        }
+
+
+        /* ==========================================
+           ERROR
+        ========================================== */
+
+        #error {
+            max-width: 1000px;
+
+            margin: 30px auto;
+
+            padding: 20px;
+
+            text-align: center;
+
+            color: tomato;
+
+            font-weight: bold;
+        }
+
+
+        /* ==========================================
+           RELATED PRODUCTS
+        ========================================== */
+
+        .heading {
+            max-width: 1000px;
+
+            margin: 40px auto 20px;
+
+            padding: 0 20px;
+
+            text-align: center;
+
+            font-family: Arial, sans-serif;
+        }
+
+
+        .relatedProducts {
+            max-width: 1000px;
+
+            margin: 0 auto 50px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(200px, 1fr)
+                );
+
+            gap: 20px;
+
+            padding: 10px 20px;
+        }
+
+
+        /* ==========================================
+           RESPONSIVE
+        ========================================== */
+
+        @media (max-width: 1024px) {
+
+            .product-container {
+                margin: 30px 20px;
+
+                flex-direction: column;
+            }
+
+
+            .product-image,
+            .product-details {
+                flex: 1 1 100%;
+            }
+
+        }
+
+
+        @media (max-width: 768px) {
+
+            .product-container {
+                margin: 20px;
+            }
+
+
+            .product-image {
+                min-height: 350px;
+            }
+
+
+            .product-image img {
+                width: 300px;
+
+                height: 300px;
+            }
+
+
+            .product-details {
+                padding: 25px;
+            }
+
+
+            .product-details h1 {
+                font-size: 1.5rem;
+            }
+
+        }
+
+
+        @media (max-width: 480px) {
+
+            .product-image {
+                min-height: 280px;
+
+                padding: 20px;
+            }
+
+
+            .product-image img {
+                width: 220px;
+
+                height: 220px;
+            }
+
+
+            .product-details {
+                padding: 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+    <!-- ================= NAVBAR ================= -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+
+            <a href="index.html">
+
+                <img
+                    src="images/OIP.webp"
+                    alt="Fashion Shop Logo"
+                >
+
+            </a>
+
+        </div>
+
+
+        <ul id="nav-links">
+
+            <li>
+                <a href="index.html">
+                    Home
+                </a>
+            </li>
+
+
+            <li class="collection-item">
+
+                <a href="#">
+                    Collection
+                </a>
+
+                <div class="dropdown">
+
+                    <a href="#">
+                        Men
+                    </a>
+
+                    <a href="#">
+                        Women
+                    </a>
+
+                    <a href="#">
+                        Accessories
+                    </a>
+
+                </div>
+
+            </li>
+
+
+            <li>
+                <a href="index.html#products">
+                    New Arrivals
+                </a>
+            </li>
+
+
+            <li>
+                <a href="index.html#products">
+                    Sale
+                </a>
+            </li>
+
+
+            <li>
+                <a href="index.html#footer">
+                    Contact
+                </a>
+            </li>
+
+
+            <!-- Login -->
+
+            <li id="loginlink">
+
+                <a
+                    href="login.html"
+                    class="login-button"
+                >
+                    Login
+                </a>
+
+            </li>
+
+
+            <!-- User -->
+
+            <li
+                class="user-menu"
+                id="userMenu"
+            >
+
+                <button
+                    id="avatarBtn"
+                    class="avatarBtn"
+                    type="button"
+                >
+
+                    <span id="avataraletter">
+                        U
+                    </span>
+
+                </button>
+
+
+                <ul
+                    class="dropdow"
+                    id="dropdowmenu"
+                >
+
+                    <li>
+
+                        <a href="profile.html">
+                            Profile
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <button
+                            id="logoutBtn"
+                            class="logoutBtn"
+                            type="button"
+                        >
+                            Logout
+                        </button>
+
+                    </li>
+
+                </ul>
+
+            </li>
+
+        </ul>
+
+
+        <!-- Search -->
+
+        <div class="search-container">
+
+            <input
+                type="text"
+                placeholder="Search fashion..."
+            >
+
+            <button
+                type="button"
+                aria-label="Search"
+            >
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+        </div>
+
+
+        <!-- Hamburger -->
+
+        <button
+            class="humburger"
+            id="humburger"
+            type="button"
+        >
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+    </nav>
+
+
+    <!-- ================= PRODUCT ================= -->
+
+    <main>
+
+        <div
+            id="error"
+            aria-live="polite"
+        ></div>
+
+
+        <div
+            class="product-container"
+            id="productcontainer"
+        >
+
+            <div class="product-image">
+
+                <img
+                    id="productImg"
+                    src=""
+                    alt="Product image"
+                >
+
+            </div>
+
+
+            <div class="product-details">
+
+                <h1 id="productTitle">
+                    Loading...
+                </h1>
+
+
+                <p
+                    class="price"
+                    id="productPrice"
+                >
+                    $0.00
+                </p>
+
+
+                <p
+                    class="category"
+                    id="productCategory"
+                ></p>
+
+
+                <p
+                    class="description"
+                    id="productDescription"
+                ></p>
+
+
+                <button
+                    class="btn"
+                    id="addToCartBtn"
+                    type="button"
+                >
+                    Add To Cart
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Related -->
+
+        <h2 class="heading">
+            Related Products
+        </h2>
+
+
+        <div
+            id="relatedProducts"
+            class="relatedProducts"
+        ></div>
+
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <div class="logo">
+
+                    <img
+                        src="images/OIP.webp"
+                        alt="Fashion Shop Logo"
+                    >
+
+                </div>
+
+
+                <p>
+                    Trendy styles, elegant design,
+                    all in one place.
+                </p>
+
+
+                <div class="social-icons">
+
+                    <a href="#">
+                        <img
+                            src="images/facebook-new.png"
+                            alt="Facebook"
+                        >
+                    </a>
+
+                    <a href="#">
+                        <img
+                            src="images/INTRAGRAM.png"
+                            alt="Instagram"
+                        >
+                    </a>
+
+                    <a href="#">
+                        <img
+                            src="images/pintrest.png"
+                            alt="Pinterest"
+                        >
+                    </a>
+
+                    <a href="#">
+                        <img
+                            src="images/Twiter.png"
+                            alt="Twitter"
+                        >
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <div class="link-group">
+
+                    <h4>Shop</h4>
+
+                    <a href="index.html#products">
+                        New Arrivals
+                    </a>
+
+                    <a href="index.html#products">
+                        Best Seller
+                    </a>
+
+                    <a href="index.html#products">
+                        Men
+                    </a>
+
+                    <a href="index.html#products">
+                        Women
+                    </a>
+
+                    <a href="index.html#products">
+                        Sale
+                    </a>
+
+                </div>
+
+
+                <div class="link-group">
+
+                    <h4>Company</h4>
+
+                    <a href="#">
+                        About
+                    </a>
+
+                    <a href="#">
+                        Career
+                    </a>
+
+                    <a href="#">
+                        Blog
+                    </a>
+
+                    <a href="#">
+                        Contact
+                    </a>
+
+                </div>
+
+
+                <div class="link-group">
+
+                    <h4>Support</h4>
+
+                    <a href="#">
+                        FAQ
+                    </a>
+
+                    <a href="#">
+                        Shipping
+                    </a>
+
+                    <a href="#">
+                        Returns
+                    </a>
+
+                    <a href="#">
+                        Privacy Policy
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                &copy; 2026 LearnCode Fashion Shop.
+                All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- Navbar JavaScript -->
+
+    <script src="js/navbar.js"></script>
+
+
+    <!-- Product JavaScript -->
+
+    <script>
+
+        /* ==========================================
+           GET PRODUCT ID
+        ========================================== */
+
+        const params =
+            new URLSearchParams(
+                window.location.search
+            );
+
+
+        const productId =
+            params.get("id");
+
+
+        /* ==========================================
+           ELEMENTS
+        ========================================== */
+
+        const productContainer =
+            document.getElementById(
+                "productcontainer"
+            );
+
+
+        const productImg =
+            document.getElementById(
+                "productImg"
+            );
+
+
+        const productTitle =
+            document.getElementById(
+                "productTitle"
+            );
+
+
+        const productPrice =
+            document.getElementById(
+                "productPrice"
+            );
+
+
+        const productCategory =
+            document.getElementById(
+                "productCategory"
+            );
+
+
+        const productDescription =
+            document.getElementById(
+                "productDescription"
+            );
+
+
+        const addToCartBtn =
+            document.getElementById(
+                "addToCartBtn"
+            );
+
+
+        const relatedProducts =
+            document.getElementById(
+                "relatedProducts"
+            );
+
+
+        const errorContainer =
+            document.getElementById(
+                "error"
+            );
+
+
+        let products = [];
+
+        let currentProduct = null;
+
+
+        /* ==========================================
+           FETCH PRODUCTS
+        ========================================== */
+
+        async function fetchData() {
+
+            try {
+
+                if (!productId) {
+
+                    throw new Error(
+                        "Product ID is missing."
+                    );
+
+                }
+
+
+                const response =
+                    await fetch(
+                        "https://fakestoreapi.com/products"
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        `HTTP error! Status: ${response.status}`
+                    );
+
+                }
+
+
+                products =
+                    await response.json();
+
+
+                currentProduct =
+                    products.find(
+                        product =>
+                            product.id ===
+                            Number(productId)
+                    );
+
+
+                if (!currentProduct) {
+
+                    throw new Error(
+                        "Product not found."
+                    );
+
+                }
+
+
+                displayProduct(
+                    currentProduct
+                );
+
+
+                displayRelatedProducts(
+                    currentProduct
+                );
+
+            }
+
+            catch (error) {
+
+                console.error(error);
+
+
+                productContainer.style.display =
+                    "none";
+
+
+                errorContainer.textContent =
+                    error.message;
+
+            }
+
+        }
+
+
+        /* ==========================================
+           DISPLAY PRODUCT
+        ========================================== */
+
+        function displayProduct(product) {
+
+            productImg.src =
+                product.image;
+
+
+            productImg.alt =
+                product.title;
+
+
+            productTitle.textContent =
+                product.title;
+
+
+            productPrice.textContent =
+                `$${product.price.toFixed(2)}`;
+
+
+            productCategory.textContent =
+                `Category: ${product.category}`;
+
+
+            productDescription.textContent =
+                product.description;
+
+        }
+
+
+        /* ==========================================
+           ADD TO CART
+        ========================================== */
+
+        addToCartBtn.addEventListener(
+            "click",
+            () => {
+
+                if (!currentProduct) {
+
+                    return;
+
+                }
+
+
+                alert(
+                    `${currentProduct.title} added to the cart!`
+                );
+
+            }
+        );
+
+
+        /* ==========================================
+           RELATED PRODUCTS
+        ========================================== */
+
+        function displayRelatedProducts(product) {
+
+            relatedProducts.innerHTML = "";
+
+
+            const related =
+                products.filter(
+                    item =>
+                        item.category ===
+                        product.category &&
+                        item.id !== product.id
+                );
+
+
+            if (related.length === 0) {
+
+                relatedProducts.innerHTML =
+                    "<p>No related products found.</p>";
+
+                return;
+
+            }
+
+
+            related.forEach(
+                (item, index) => {
+
+                    const card =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    card.className =
+                        "card";
+
+
+                    card.innerHTML = `
+
+                        <img
+                            src="${item.image}"
+                            alt="${item.title}"
+                        >
+
+                        <div class="card-content">
+
+                            <h3>
+
+                                <a
+                                    href="product.html?id=${item.id}"
+                                >
+                                    ${item.title}
+                                </a>
+
+                            </h3>
+
+
+                            <p class="price">
+                                $${item.price.toFixed(2)}
+                            </p>
+
+
+                            <p class="category">
+                                ${item.category}
+                            </p>
+
+                        </div>
+
+                    `;
+
+
+                    relatedProducts.appendChild(
+                        card
+                    );
+
+
+                    setTimeout(
+                        () => {
+
+                            card.classList.add(
+                                "show"
+                            );
+
+                        },
+                        index * 50
+                    );
+
+                }
+            );
+
+        }
+
+
+        /* ==========================================
+           START
+        ========================================== */
+
+        fetchData();
+
+    </script>
+
+</body>
+
+</html>
